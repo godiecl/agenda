@@ -85,4 +85,23 @@ public final class AgendaModel extends AbstractTableModel {
 
         throw new IndexOutOfBoundsException("Fila o columna invalida.");
     }
+
+    /**
+     * Returns the Contacto at <code>rowIndex</code>.
+     */
+    public Contacto getContacto(int rowIndex) {
+        if (rowIndex < 0) {
+            return null;
+        }
+        return this.agenda.getContactos()
+                          .get(rowIndex);
+    }
+
+    /**
+     * Agrega un Contacto a la Agenda.
+     */
+    public void add(final Contacto contacto) {
+        this.agenda.add(contacto);
+        this.fireTableDataChanged();
+    }
 }

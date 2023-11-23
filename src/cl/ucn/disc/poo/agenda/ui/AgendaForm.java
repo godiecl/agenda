@@ -4,6 +4,7 @@
 
 package cl.ucn.disc.poo.agenda.ui;
 
+import cl.ucn.disc.poo.agenda.domain.Contacto;
 import cl.ucn.disc.poo.agenda.services.Agenda;
 import cl.ucn.disc.poo.agenda.services.AgendaImpl;
 
@@ -23,6 +24,11 @@ public final class AgendaForm extends JFrame {
     private JPanel panelCenter;
     private JPanel panelTitle;
     private JTable tableContactos;
+    private JTextField textNombre;
+    private JTextField textApellidos;
+    private JTextField textTelefono;
+    private JButton buttonGuardar;
+    private JButton buttonLimpiar;
 
     /**
      * The Agenda Model.
@@ -50,6 +56,43 @@ public final class AgendaForm extends JFrame {
 
         // asigno el modelo a la tabla
         this.tableContactos.setModel(this.agendaModel);
+
+        // en caso de seleccionar una fila, muestro los datos del contacto
+        this.tableContactos.getSelectionModel()
+                           .addListSelectionListener(e -> {
+
+                               // si no hay seleccion, no hago nada
+                               if (e.getValueIsAdjusting()) {
+                                   return;
+                               }
+
+                               // obtengo el contacto seleccionado
+                               Contacto contacto = agendaModel.getContacto(tableContactos.getSelectedRow());
+
+                               // si no hay contacto, no hago nada
+                               if (contacto == null) {
+                                   return;
+                               }
+
+                               // muestro los datos del contacto
+                               textNombre.setText(contacto.getNombre());
+                               textApellidos.setText(contacto.getApellido());
+                               textTelefono.setText(contacto.getTelefono());
+                           });
+
+        // limpiar el formulario
+        this.buttonLimpiar.addActionListener(e -> {
+            textNombre.setText("");
+            textApellidos.setText("");
+            textTelefono.setText("");
+            this.tableContactos.getSelectionModel()
+                               .clearSelection();
+        });
+
+        this.buttonGuardar.addActionListener(e -> {
+            Contacto contacto = new Contacto(textNombre.getText(), textApellidos.getText(), textTelefono.getText());
+            this.agendaModel.add(contacto);
+        });
     }
 
     /**
