@@ -1,0 +1,13 @@
+# IntelliJ IDEA
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+.idea/workspace.xml
+.idea/uiDesigner.xml
+.idea/misc.xml
+
+# Mac OS
+.DS_Store
+
+# project files
+/contactos.json
