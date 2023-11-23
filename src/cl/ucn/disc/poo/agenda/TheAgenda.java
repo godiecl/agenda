@@ -26,6 +26,8 @@ public final class TheAgenda {
         Agenda agenda = new AgendaImpl();
 
         agenda.add(new Contacto("Francisco", "Urtuza", "+569 8765 4321"));
+        agenda.add(new Contacto("Javiera", "Paredes", "+569 1234 5678"));
+        agenda.add(new Contacto("Carmen", "Astorga", "+569 3333 1234"));
 
         for (Contacto c : agenda.getContactos()) {
             System.out.println("Contacto: " + c.getNombreCompleto());
