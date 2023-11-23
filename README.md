@@ -2,7 +2,6 @@
 
 ![Course: Programacion Orientada al Objeto](https://img.shields.io/badge/course-Programaci%C3%B3n%20Orientada%20al%20Objeto-blue)
 ![Date: II semestre 2023](https://img.shields.io/badge/date-II%20semestre%202023-yellow)
-
 ![Carrera: Ingeniería Civil en Computación e Informática](https://img.shields.io/badge/carrera-Ingenier%C3%ADa%20Civil%20en%20Computaci%C3%B3n%20e%20Inform%C3%A1tica-red)
 
 ## Description
