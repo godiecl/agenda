@@ -1,5 +1,5 @@
 <component name="CopyrightManager">
-  <settings>
+  <settings default="poo">
     <module2copyright>
       <element module="All" copyright="poo" />
     </module2copyright>
