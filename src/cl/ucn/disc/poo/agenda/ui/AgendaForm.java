@@ -5,8 +5,6 @@
 package cl.ucn.disc.poo.agenda.ui;
 
 import cl.ucn.disc.poo.agenda.domain.Contacto;
-import cl.ucn.disc.poo.agenda.services.Agenda;
-import cl.ucn.disc.poo.agenda.services.AgendaImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +12,7 @@ import java.awt.*;
 /**
  * Implementacion del Formulario de la Agenda.
  *
- * @author Programacion Orientada al Objeto.
+ * @author Diego Urrutia-Astorga.
  */
 public final class AgendaForm extends JFrame {
 
@@ -38,8 +36,8 @@ public final class AgendaForm extends JFrame {
     /**
      * Constructor de la agenda.
      */
-    public AgendaForm(final Agenda agenda) {
-        super("Agenda v1.0");
+    public AgendaForm() {
+        super("Agenda v2.0");
 
         this.setContentPane(panelMain);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -52,7 +50,7 @@ public final class AgendaForm extends JFrame {
         this.setBounds(dimension.width / 4, dimension.height / 4, dimension.width / 2, dimension.height / 2);
 
         // asigno la agenda
-        this.agendaModel = new AgendaModel(agenda);
+        this.agendaModel = new AgendaModel();
 
         // asigno el modelo a la tabla
         this.tableContactos.setModel(this.agendaModel);
@@ -84,7 +82,7 @@ public final class AgendaForm extends JFrame {
         this.buttonLimpiar.addActionListener(e -> {
             textNombre.setText("");
             textApellidos.setText("");
-            textTelefono.setText("");
+            textTelefono.setText("+569");
             this.tableContactos.getSelectionModel()
                                .clearSelection();
         });
@@ -122,14 +120,11 @@ public final class AgendaForm extends JFrame {
             System.err.println(e);
         }
 
-        // creacion de la agenda (fuera del hilo de dibujo)
-        Agenda agenda = new AgendaImpl();
-
         // SwingUtilities
         SwingUtilities.invokeLater(() -> {
 
             // creo la agenda
-            AgendaForm agendaForm = new AgendaForm(agenda);
+            AgendaForm agendaForm = new AgendaForm();
 
             // la hago visible
             agendaForm.setVisible(true);
