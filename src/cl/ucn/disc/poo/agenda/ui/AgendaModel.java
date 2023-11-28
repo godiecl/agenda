@@ -5,29 +5,23 @@
 package cl.ucn.disc.poo.agenda.ui;
 
 import cl.ucn.disc.poo.agenda.domain.Contacto;
-import cl.ucn.disc.poo.agenda.services.Agenda;
 
 import javax.swing.table.AbstractTableModel;
 
 /**
  * The Agenda Model.
  *
- * @author Programacion Avanzada.
+ * @author Diego Urrutia-Astorga.
  */
 public final class AgendaModel extends AbstractTableModel {
-
-    /**
-     * The Agenda.
-     */
-    private final Agenda agenda;
 
     /**
      * The Constructor.
      *
      * @param agenda to use.
      */
-    public AgendaModel(Agenda agenda) {
-        this.agenda = agenda;
+    public AgendaModel() {
+        // nothing here
     }
 
     /**
@@ -35,8 +29,8 @@ public final class AgendaModel extends AbstractTableModel {
      */
     @Override
     public int getRowCount() {
-        return this.agenda.getContactos()
-                          .size();
+        return AgendaSingleton.getInstance()
+                              .size();
     }
 
     /**
@@ -71,9 +65,10 @@ public final class AgendaModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
 
         // el contacto en la agenda
-        Contacto contacto = this.agenda.getContactos()
-                                       .get(rowIndex);
+        Contacto contacto = AgendaSingleton.getInstance()
+                                           .getContacto(rowIndex);
 
+        // depeniendo de la columna, retorno el valor
         switch (columnIndex) {
             case 0:
                 return contacto.getNombre();
@@ -93,15 +88,18 @@ public final class AgendaModel extends AbstractTableModel {
         if (rowIndex < 0) {
             return null;
         }
-        return this.agenda.getContactos()
-                          .get(rowIndex);
+        return AgendaSingleton.getInstance()
+                              .getContacto(rowIndex);
     }
 
     /**
      * Agrega un Contacto a la Agenda.
      */
     public void add(final Contacto contacto) {
-        this.agenda.add(contacto);
+        // agrego el contacto a al Agenda.
+        AgendaSingleton.getInstance()
+                       .add(contacto);
+        // notifico a la tabla que se agrego un contacto.
         this.fireTableDataChanged();
     }
 }

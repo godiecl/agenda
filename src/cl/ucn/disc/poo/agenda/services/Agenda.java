@@ -36,6 +36,19 @@ public interface Agenda {
     List<Contacto> getContactos();
 
     /**
+     * @return el numero de contactos en la Agenda.
+     */
+    int size();
+
+    /**
+     * Retorna el Contacto en la posicion indicada.
+     *
+     * @param posicion del contacto.
+     * @return the Contacto.
+     */
+    Contacto getContacto(int posicion);
+
+    /**
      * Carga desde el backend los Contactos.
      */
     void load();

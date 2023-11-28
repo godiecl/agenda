@@ -164,6 +164,22 @@ public final class AgendaImpl implements Agenda {
      * {@inheritDoc}
      */
     @Override
+    public int size() {
+        return this.contactos.size();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Contacto getContacto(int posicion) {
+        return this.contactos.get(posicion);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void load() {
 
         // limpiar la lista previo a la carga
