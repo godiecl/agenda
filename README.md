@@ -14,8 +14,6 @@ connectivity are implemented to save the contacts permanently.
 
 ![Last Commit](https://img.shields.io/github/last-commit/godiecl/conserjeria)
 
-![License](https://img.shields.io/github/license/godiecl/conserjeria)
-
 ## Tools
 
 - **Language**: [Java 17](https://jdk.java.net/): Java is the #1 programming language and development platform. It
@@ -23,6 +21,8 @@ connectivity are implemented to save the contacts permanently.
 - **Libraries**:
     - [Google Gson](https://github.com/google/gson): Gson is a Java library that can be used to convert Java Objects
       into their JSON representation. It can also be used to convert a JSON string to an equivalent Java object.
+    - [FlatLaf](https://github.com/JFormDesigner/FlatLaf): FlatLaf is a modern open-source cross-platform Look and Feel
+      for Java Swing desktop applications.
 
 ## Credits
 
@@ -31,4 +31,4 @@ connectivity are implemented to save the contacts permanently.
 
 ## License
 
-This project is open-sourced software licensed under the [MIT license](LICENSE.md).
+![License](https://img.shields.io/github/license/godiecl/conserjeria) This project is open-sourced software licensed under the [MIT license](LICENSE.md).
