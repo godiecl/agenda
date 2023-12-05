@@ -103,12 +103,8 @@ public final class AgendaImpl implements Agenda {
      * @return true si el nombre, apellido y numero es igual.
      */
     private boolean isEquals(final Contacto c1, final Contacto c2) {
-        return c1.getNombre()
-                 .equalsIgnoreCase(c2.getNombre()) &&
-               c1.getApellido()
-                 .equalsIgnoreCase(c2.getApellido()) &&
-               c1.getTelefono()
-                 .equalsIgnoreCase(c2.getTelefono());
+        return c1.getRut()
+                 .equalsIgnoreCase(c2.getRut());
     }
 
     /**
