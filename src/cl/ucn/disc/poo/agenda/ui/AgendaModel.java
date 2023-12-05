@@ -5,6 +5,8 @@
 package cl.ucn.disc.poo.agenda.ui;
 
 import cl.ucn.disc.poo.agenda.domain.Contacto;
+import cl.ucn.disc.poo.agenda.domain.Direccion;
+import cl.ucn.disc.poo.agenda.domain.Telefono;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -17,8 +19,6 @@ public final class AgendaModel extends AbstractTableModel {
 
     /**
      * The Constructor.
-     *
-     * @param agenda to use.
      */
     public AgendaModel() {
         // nothing here
@@ -38,7 +38,7 @@ public final class AgendaModel extends AbstractTableModel {
      */
     @Override
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
 
     /**
@@ -48,11 +48,13 @@ public final class AgendaModel extends AbstractTableModel {
     public String getColumnName(int column) {
         switch (column) {
             case 0:
-                return "Nombre";
+                return "RUT";
             case 1:
-                return "Apellido";
+                return "Nombre";
             case 2:
                 return "Telefono";
+            case 3:
+                return "Direccion";
         }
         throw new IndexOutOfBoundsException("Columna invalida.");
     }
@@ -71,11 +73,21 @@ public final class AgendaModel extends AbstractTableModel {
         // depeniendo de la columna, retorno el valor
         switch (columnIndex) {
             case 0:
-                return contacto.getNombre();
+                return contacto.getRut();
             case 1:
-                return contacto.getApellido();
+                return contacto.getNombreCompleto();
             case 2:
-                return contacto.getTelefono();
+                Telefono telefono = contacto.getTelefono();
+                if (telefono != null) {
+                    return telefono.getCodigoArea() + telefono.getNumero();
+                }
+                return null;
+            case 3:
+                Direccion direccion = contacto.getDireccion();
+                if (direccion != null) {
+                    return direccion.getCalle() + " (" + direccion.getCiudad() + ")";
+                }
+                return null;
         }
 
         throw new IndexOutOfBoundsException("Fila o columna invalida.");
