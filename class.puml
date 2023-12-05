@@ -1,0 +1,130 @@
+@startuml
+skin rose
+left to right direction
+hide empty members
+set separator none
+
+package cl.ucn.disc.poo.agenda {
+
+    package domain {
+
+        class Contacto {
+            - rut: String
+            - nombre: String
+            - apellido: String
+            - Contacto()
+            + getRut(): String
+            + getNombre(): String
+            + getApellido(): String
+            + getTelefono(): Telefono
+            + getDireccion(): Direccion
+            + getNombreCompleto(): String
+            {static} +builder(): ContactoBuilder
+
+        }
+
+        class ContactoBuilder {
+            - rut: String
+            - nombre: String
+            - apellido: String
+            + ContactoBuilder()
+            + rut(rut: String): ContactoBuilder
+            + nombre(nombre: String): ContactoBuilder
+            + telefono(telefono: Telefono): ContactoBuilder
+            + direccion(direccion: Direccion): ContactoBuilder
+            + build(): Contacto
+        }
+        ContactoBuilder --+ Contacto: <<inner>>
+        ContactoBuilder o--> "0..1" Telefono: - telefono: Telefono
+        ContactoBuilder o--> "0..1" Direccion: - direccion: Direccion
+
+        class Direccion {
+            - calle: String
+            - codigoPostal: int
+            - ciudad: String
+            + Direccion(calle: String, codigoPostal: int, ciudad: String)
+            + getCalle(): String
+            + getCodigoPostal(): int
+            + getCiudad(): String
+        }
+        Direccion "0..1" <--o Contacto: - direccion: Direccion
+
+        enum TipoTelefono {
+            FIJO
+            MOVIL
+        }
+
+        class Telefono {
+            - numero: String
+            - codigoArea: int
+            - tipoTelefono: TipoTelefono
+            + Telefono(numero: String, codigoArea: int, tipoTelefono: TipoTelefono)
+            + getNumero(): String
+            + getCodigoArea(): int
+            + getTipoTelefono(): TipoTelefono
+        }
+        Telefono *--> "1" TipoTelefono: - tipoTelefono: TipoTelefono
+        Telefono "0..1" <--o Contacto: - telefono: Telefono
+
+    }
+
+    package services {
+
+        interface Agenda {
+            + add(contacto: Contacto): void
+            + search(letras: String): List<Contacto>
+            + getContacto(): List<Contacto>
+            + size(): int
+            + getContacto(int: posicion): Contacto
+            + getContacto(rut: String): Contacto
+            + load(): void
+            + save(): void
+        }
+
+        class AgendaImpl {
+            - {static} FILENAME: String
+            - {static} GSON: Gson
+            + AgendaImpl()
+            - sort(): void
+            - isEquals(c1: Contacto: c2: Contacto): boolean
+        }
+        AgendaImpl ..|> Agenda: <<implements>>
+        AgendaImpl o--> Contacto: - contactos: List<Contacto>
+
+    }
+
+    package ui {
+
+        class AgendaSingleton {
+            - {static} INSTANCE: Agenda
+            - AgendaSingleton()
+            + {static} getInstance(): Agenda
+        }
+        AgendaSingleton --> "1" Agenda
+        AgendaSingleton ..> AgendaImpl: <<uses>>
+
+        class AgendaModel {
+            + AgendaModel()
+            + getRowCount(): int
+            + getColumnCount(): int
+            + getColumnName(): String
+            + getValueAt(rowIndex: int, columnIndex: int): Object
+            + getContacto(rowIndex: int): Contacto
+            + add(contacto: Contacto): void
+        }
+        AgendaModel ..> AgendaSingleton: <<uses>>
+
+    }
+
+}
+
+package javax.swing.table {
+
+    class AbstractTableModel <<abstract>> {
+        ...
+    }
+    AbstractTableModel <|- AgendaModel
+
+}
+
+@enduml
