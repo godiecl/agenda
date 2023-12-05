@@ -12,11 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Implementacion concreta de la Agenda.
@@ -80,7 +76,7 @@ public final class AgendaImpl implements Agenda {
 
         // don't allow repeated Contact.
         if (this.contactos.stream()
-                          .anyMatch(c -> this.isEquals(c, contacto))) {
+                .anyMatch(c -> this.isEquals(c, contacto))) {
             System.out.println("Contacto ya existe, no fue agregado.");
             return;
         }
@@ -104,7 +100,7 @@ public final class AgendaImpl implements Agenda {
      */
     private boolean isEquals(final Contacto c1, final Contacto c2) {
         return c1.getRut()
-                 .equalsIgnoreCase(c2.getRut());
+                .equalsIgnoreCase(c2.getRut());
     }
 
     /**
@@ -116,31 +112,11 @@ public final class AgendaImpl implements Agenda {
         // listado de resultados
         List<Contacto> result = new ArrayList<>();
 
-        // recorro el listado de contactos
-        for (Contacto contacto : this.contactos) {
-
-            // si el nombre o apellido contiene la busqueda
-            if (contacto.getNombre()
-                        .equalsIgnoreCase(letras) ||
-                contacto.getApellido()
-                        .equalsIgnoreCase(letras)) {
-                // lo agrego al resultado
-                result.add(contacto);
-            }
-        }
-
-        /*
         // misma version de arriba, pero usando stream
         List<Contacto> contactosFiltrados = this.contactos
                 .stream()
-                .filter(c -> c.getNombre()
-                              .toLowerCase()
-                              .contains(busqueda) ||
-                             c.getApellido()
-                              .toLowerCase()
-                              .contains(busqueda))
-                .collect(Collectors.toList());
-         //*/
+                .filter(c -> c.getNombreCompleto().equalsIgnoreCase(letras))
+                .toList();
 
         // retorno el resultado
         return result;
@@ -170,6 +146,17 @@ public final class AgendaImpl implements Agenda {
     @Override
     public Contacto getContacto(int posicion) {
         return this.contactos.get(posicion);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Contacto getContacto(String rut) {
+        return this.contactos
+                .stream()
+                .filter(c -> c.getRut().equalsIgnoreCase(rut))
+                .findFirst().orElse(null);
     }
 
     /**

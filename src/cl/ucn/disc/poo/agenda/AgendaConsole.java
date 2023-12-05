@@ -60,6 +60,12 @@ public final class AgendaConsole {
             System.out.println("Encontrados: " + c.getNombreCompleto());
         }
 
+        // buscar contacto
+        Contacto contacto = agenda.getContacto("99999999-9");
+        if (contacto != null) {
+            System.out.println("Encontrados: " + contacto.getNombreCompleto());
+        }
+
         System.out.println("Done.");
 
     }

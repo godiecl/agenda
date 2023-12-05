@@ -49,6 +49,14 @@ public interface Agenda {
     Contacto getContacto(int posicion);
 
     /**
+     * Retorna el Contacto dado su rut.
+     *
+     * @param rut del contacto.
+     * @return the Contacto.
+     */
+    Contacto getContacto(String rut);
+
+    /**
      * Carga desde el backend los Contactos.
      */
     void load();
