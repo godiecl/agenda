@@ -1,8 +1,9 @@
 # The Agenda Project
 
-![Course: Programacion Orientada al Objeto](https://img.shields.io/badge/course-Programaci%C3%B3n%20Orientada%20al%20Objeto-blue)
-![Date: II semestre 2023](https://img.shields.io/badge/date-II%20semestre%202023-yellow)
-![Carrera: Ingeniería Civil en Computación e Informática](https://img.shields.io/badge/carrera-Ingenier%C3%ADa%20Civil%20en%20Computaci%C3%B3n%20e%20Inform%C3%A1tica-red)
+![course: Programacion Orientada al Objeto](https://img.shields.io/badge/course-Programaci%C3%B3n%20Orientada%20al%20Objeto-blue?logo=coursera)
+![degree: Ingeniería Civil en Computación e Informática](https://img.shields.io/badge/degree-Ingenier%C3%ADa%20Civil%20en%20Computaci%C3%B3n%20e%20Inform%C3%A1tica-red?logo=academia)
+![institution: Universidad Católica del Norte](https://img.shields.io/badge/institution-Universidad%20Cat%C3%B3lica%20del%20Norte-green?logo=google-scholar)
+![date: II semestre 2023](https://img.shields.io/badge/date-II%20semestre%202023-yellow?logo=rescuetime)
 
 ## Description
 
@@ -12,7 +13,7 @@ application utilizes Java's object-oriented programming capabilities to organize
 search functionality to quickly locate contact information. Persistence mechanisms like file I/O or database
 connectivity are implemented to save the contacts permanently.
 
-![Last Commit](https://img.shields.io/github/last-commit/godiecl/conserjeria)
+![Last Commit](https://img.shields.io/github/last-commit/godiecl/agenda/main?style=social&logo=github)
 
 ## Tools
 
