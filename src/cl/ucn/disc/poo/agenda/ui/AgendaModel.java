@@ -70,7 +70,7 @@ public final class AgendaModel extends AbstractTableModel {
         Contacto contacto = AgendaSingleton.getInstance()
                                            .getContacto(rowIndex);
 
-        // depeniendo de la columna, retorno el valor
+        // dependiendo de la columna, retorno el valor
         switch (columnIndex) {
             case 0:
                 return contacto.getRut();
@@ -79,7 +79,7 @@ public final class AgendaModel extends AbstractTableModel {
             case 2:
                 Telefono telefono = contacto.getTelefono();
                 if (telefono != null) {
-                    return telefono.getCodigoArea() + telefono.getNumero();
+                    return "+" + telefono.getCodigoArea() + telefono.getNumero();
                 }
                 return null;
             case 3:
@@ -111,6 +111,7 @@ public final class AgendaModel extends AbstractTableModel {
         // agrego el contacto a al Agenda.
         AgendaSingleton.getInstance()
                        .add(contacto);
+
         // notifico a la tabla que se agrego un contacto.
         this.fireTableDataChanged();
     }
